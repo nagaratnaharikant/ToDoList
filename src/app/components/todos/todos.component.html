@@ -1,0 +1,32 @@
+<body>
+  <form (ngSubmit) = "onSubmit()" class="col s5" name="myForm">
+      <h5 class="center">Create Todo List</h5>
+      <div class="row">
+        <div class="input-field col s4">
+          <input id="task" type="text" 
+                 [(ngModel)]="item.name" 
+                 name="task" 
+                 #name="ngModel" 
+                 required>
+
+          <label>Add Item</label>
+
+          <div *ngIf="(submitted)">
+            <span *ngIf="!name.value"
+                class="alert alert-danger"> 
+                Enter the task
+            </span>
+        </div>
+      </div>
+      <div class="input-field col s4">
+          <input type="text" [(ngModel)]="item.category" name="category">
+          <label>Category</label>
+      </div>
+      <div class="input-field col s4">
+          <input type="submit" id="submit" value="Add Item" class="btn purple"/>
+      </div>
+    </div>
+  </form>
+
+</body>
+

@@ -1,0 +1,81 @@
+<body>
+    <div class="row">
+        <div class="input-field col s6">
+            <mat-form-field>
+                <mat-select placeholder="Filter List" [(ngModel)]="selectedItem" name="food">
+                    <mat-option value="all">Show All</mat-option>
+                    <mat-option value="notDone">Yet To Do</mat-option>
+                    <mat-option value="completed">Completed</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div> 
+
+        <div class="col s6"> 
+            <input type="text" class="center" placeholder="Search...." [(ngModel)]="input">
+        </div>
+    </div>
+    
+    <table class="highlight" id="myList">
+    <thead>
+      <tr>
+          <th class="ml-2">
+              To Do List
+          </th>
+          <th>
+              Category
+          </th>
+          <th>
+              Created Date
+          </th>
+          <th class="center">Actions</th>
+      </tr>
+    </thead>
+
+    <tbody *ngIf="items?.length > 0; else noItems" class="items">
+      <tr *ngFor="let item of items | search:input | filterlist:selectedItem " > 
+        <td @slide>
+            <div>
+                <input type="checkbox" 
+                       [id]="item.name" 
+                       [ngModel]="item.completed" 
+                       (ngModelChange)="completed($event,item)"
+                >
+                
+                <label [for]="item.name">{{ item.name }}</label>   
+                
+                <form *ngIf="editState && itemToEdit.name == item.name && itemToEdit.category == item.category" 
+                       (ngSubmit)="updateItem(item)">
+                  <input placeholder="{{ item.name }}" 
+                         [(ngModel)]="item.name" name="name" 
+                         (keyup.enter)="updateItem(item)"> 
+                  <input placeholder="{{ item.category }}" 
+                         [(ngModel)]="item.category" name="category" 
+                         (keyup.enter)="updateItem(item)">                      
+                  <input type="submit" id="submit" value="Update Item" class="btn purple"/>
+                </form>
+            </div>
+        </td>
+        <td @slide>{{ item.category }}
+        </td>
+        <td @slide>{{ item.date }}</td>
+        
+        <td class="center" @slide>
+          <i (click)="editItem($event,item)" class="fa fa-edit"></i>
+          <i class="fa fa-trash" 
+             (click)="deleteItem($event,item)">
+          </i>
+          <i *ngIf="editState && itemToEdit.id == item.id" 
+              (click)="clearState()" 
+              class="fa fa-compress">
+          </i>
+        </td>
+      </tr>
+    </tbody>
+    </table>
+
+  <ng-template #noItems>
+        <hr>
+        <h5>You Dont have any To do yet</h5>
+  </ng-template>
+</body>
+      

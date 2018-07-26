@@ -1,0 +1,62 @@
+body {
+
+    border-bottom: 2px solid grey;
+    margin: 30px;
+    background-color: transparent;
+   
+}
+table {
+    box-shadow: 5px 10px #b3abab;
+}
+
+table tr td {
+    border-bottom: 1px solid grey;
+    width: 50px !important;
+}
+thead th{
+    border-top: 2px solid grey;
+    border-bottom: 2px solid grey;
+    background-color: rgb(244, 66, 113);
+    width: 50px !important;
+    color: rgb(100, 250, 201);
+}
+i{
+    margin: 3px;
+    padding: 2px;
+}
+.fa-edit {
+    background-color: black;
+    color: green;
+    border-radius: 20%;
+}
+
+.fa-edit:hover {
+    background-color: white;
+    color: green;
+    border-radius: 20%;
+}
+
+.fa-trash {
+    background-color: black;
+    border-color: black;
+    color: red;
+    border-radius: 20%;
+}
+
+.fa-trash:hover {
+    background-color: white;
+    border-color: black;
+    color: red;
+    border-radius: 20%;
+}
+
+.highlight {
+    background-color: rgb(78, 113, 136);
+}
+label {
+    color: black;
+}
+.row {
+    margin: 60px !important;
+ }
+
